@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import java.util.Collection;
-//import com.mongodb.MongoClient;
 
 @Configuration
 @EnableMongoRepositories(basePackages = "com.jaredtalbert.whatareview.repository")

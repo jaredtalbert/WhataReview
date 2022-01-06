@@ -2,7 +2,6 @@ package com.jaredtalbert.whatareview.controller;
 
 import com.jaredtalbert.whatareview.model.Restaurant;
 import com.jaredtalbert.whatareview.repository.RestaurantRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
