@@ -13,6 +13,8 @@ public class Restaurant {
     private String address2;
     private int zipCode;
 
+    private Review[] reviews;
+
     public long getId() {
         return id;
     }
@@ -43,5 +45,13 @@ public class Restaurant {
 
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public Review[] getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Review[] reviews) {
+        this.reviews = reviews;
     }
 }
