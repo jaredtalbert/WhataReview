@@ -1,16 +1,12 @@
 package com.jaredtalbert.whatareview.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "restaurant")
+@Document("restaurants")
 public class Restaurant {
 
     @Id
-    @GeneratedValue
     private long id;
 
     private String address1;
