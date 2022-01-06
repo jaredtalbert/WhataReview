@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface RestaurantRepository extends MongoRepository<Restaurant, Long> {
     List<Restaurant> findAll();
+    Restaurant findRestaurantById(Long id);
 
 }

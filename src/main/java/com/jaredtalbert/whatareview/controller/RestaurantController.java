@@ -16,7 +16,6 @@ import java.util.List;
 @RequestMapping("/places")
 public class RestaurantController {
 
-//    @Autowired
     private final RestaurantRepository repository;
 
     public RestaurantController(RestaurantRepository repository) {
@@ -29,7 +28,11 @@ public class RestaurantController {
     }
 
     @GetMapping("/{id}")
-    public Restaurant getRestaurantById(@PathVariable Long id) throws Exception {
-        return repository.findById(id).orElseThrow(Exception::new);
+    public ResponseEntity<Restaurant> getRestaurantById(@PathVariable Long id) {
+        try {
+            return new ResponseEntity<>(repository.findRestaurantById(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 }
