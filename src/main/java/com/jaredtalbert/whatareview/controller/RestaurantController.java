@@ -2,12 +2,10 @@ package com.jaredtalbert.whatareview.controller;
 
 import com.jaredtalbert.whatareview.model.Restaurant;
 import com.jaredtalbert.whatareview.repository.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,7 +13,8 @@ import java.util.List;
 @RequestMapping("/places")
 public class RestaurantController {
 
-    private final RestaurantRepository repository;
+    @Autowired
+    private RestaurantRepository repository;
 
     public RestaurantController(RestaurantRepository repository) {
         this.repository = repository;
@@ -27,11 +26,26 @@ public class RestaurantController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Restaurant> getRestaurantById(@PathVariable Long id) {
+    public ResponseEntity<Restaurant> getRestaurantById(@PathVariable String id) {
         try {
             return new ResponseEntity<>(repository.findRestaurantById(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/testAdd")
+    public ResponseEntity<Restaurant> addRestaurantForTesting(@RequestBody Restaurant restaurant) {
+        try {
+            Restaurant newRestaurant = new Restaurant();
+            newRestaurant.setAddress1(restaurant.getAddress1());
+            newRestaurant.setAddress2(restaurant.getAddress2());
+            newRestaurant.setZipCode(restaurant.getZipCode());
+            repository.save(newRestaurant);
+            return new ResponseEntity<>(newRestaurant, HttpStatus.CREATED);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

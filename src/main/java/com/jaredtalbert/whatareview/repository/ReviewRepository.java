@@ -2,10 +2,12 @@ package com.jaredtalbert.whatareview.repository;
 
 import com.jaredtalbert.whatareview.model.Review;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface ReviewRepository extends MongoRepository<Review, Long> {
-    List<Review> findReviewByRestaurantId(Long id);
+@Repository
+public interface ReviewRepository extends MongoRepository<Review, String> {
+    List<Review> findReviewByRestaurantId(String id);
 
 }

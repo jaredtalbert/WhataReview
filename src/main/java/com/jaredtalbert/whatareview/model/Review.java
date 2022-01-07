@@ -3,12 +3,14 @@ package com.jaredtalbert.whatareview.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
 @Document("reviews")
 public class Review {
-    @Id
-    private long Id;
 
-    public Review(String author, String body, long restaurantId) {
+    @Id
+    private String Id;
+
+    public Review(String author, String body, String restaurantId) {
         this.author = author;
         this.body = body;
         this.restaurantId = restaurantId;
@@ -16,9 +18,9 @@ public class Review {
 
     private String author;
     private String body;
-    private long restaurantId;
+    private String restaurantId;
 
-    public long getId() {
+    public String getId() {
         return Id;
     }
 
@@ -30,7 +32,7 @@ public class Review {
         return body;
     }
 
-    public long getRestaurantId() {
+    public String getRestaurantId() {
         return restaurantId;
     }
 }

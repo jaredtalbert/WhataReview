@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Restaurant {
 
     @Id
-    private long id;
+    private String id;
 
     private String address1;
     private String address2;
@@ -15,11 +15,11 @@ public class Restaurant {
 
     private Review[] reviews;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

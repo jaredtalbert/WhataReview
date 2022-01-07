@@ -20,7 +20,7 @@ public class ReviewController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Review>> getReviewsForStore(@PathVariable("id") Long id) {
+    public ResponseEntity<List<Review>> getReviewsForStore(@PathVariable("id") String id) {
         try {
             return new ResponseEntity<>(reviewRepository.findReviewByRestaurantId(id), HttpStatus.OK);
         } catch (Exception e) {
@@ -29,9 +29,9 @@ public class ReviewController {
     }
 
     @PostMapping
-    public ResponseEntity<Review> createReview(@PathVariable("id") Long id, @RequestBody Review review) {
+    public ResponseEntity<Review> createReview(@PathVariable("id") String id, @RequestBody Review review) {
         try {
-            Review newReview = reviewRepository.save(new Review(review.getAuthor(), review.getBody(), review.getRestaurantId()));
+            Review newReview = reviewRepository.save(new Review(review.getAuthor(), review.getBody(), id));
             return new ResponseEntity<>(newReview, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
